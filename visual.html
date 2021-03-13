@@ -53,9 +53,20 @@
         <li> Made the average line straight instead of curveds</li>
         <li> Added a Border Color</li>
         <li> Hover over the data point to see an interactive box pop up</li>
+        <li> Added color to dataset title</li>
+        <li> Changed style of dataset title</li>
     </ul>
 </h4>
 <canvas id = "line-chart3" width="800" height="450"></canvas>
+</div>
+<div>
+    <h4>References</h4>
+    <ul>
+    <li> <a href = "https://www.chartjs.org/ "> Chart,js Documentation</a></li>
+    <li> <a href = "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool" > CSS RGBA Color Picker </a></li>
+    <li> <a href = "https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/#2-line-chart"> Line Chart Blog</a></li>
+    <li><a href = "https://www.chartjs.org/docs/latest/charts/line.html">Chart.js Line Charts</a></li>
+</ul>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -183,7 +194,7 @@
         borderWidth: 4,
       }, { 
         data: [550, 2001, 3284, 3312, 2800, 4705, 5532, 5550,5402,5445],
-        label: "Arkansaw",
+        label: "Arkansas",
         pointBorderColor: "#3103D8",
         pointBackgroundColor: "#3103D8",
         pointHoverBackgroundColor: "#3103D8",
@@ -216,7 +227,7 @@
   options: {
     title: {
       display: true,
-      text: 'Police Stops per region (in millions)',
+      text: 'Predicted Police Stops per state',
       font: 'Arial',
     },
     legend:{
@@ -385,8 +396,12 @@
   options: {
     title: {
       display: true,
-      text: 'Police Stops per region (in millions)',
+      text: 'Predicted Police Stops per state',
       font: 'Arial',
+      fontSize: 30,
+      fontColor: '#0349fc',
+      fontStyle: 'bold italic',
+      backgroundColor: 'rgba(127, 63, 191, 0.4)',
     },
     legend:{
         labels:{
