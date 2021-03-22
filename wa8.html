@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type ="text/css">
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h2>
+    Amount of Outcomes per District
+</h2>
+<canvas id="myChart"></canvas>
+<br>
+
+<a href = "">Link to Code (Statistic included)</a>
+<h3>
+    Analysis
+</h3>
+<p>
+    This data shows how many citations, arrest, and warnings were issued in the city of Denver. During my analysis I found that the percent of getting arrested is around 27%, and the percent of getting issued a citation or a warning is around 48%. This shows that the Denver police are more likely to issues a citation or warning than an arrest. Moreover, I found that District 2 has the highest amount of arrest. District 2 is located in a very big area of Denver including the RINO district, Denver Zoo, and City Park. The district that gave the most amount of citations is district 3. This information is important as it dhows the variation in outcomes per district. District 7 has so little data because it is the Denver Airport, which would make sense for its numbers. A question I would like to find in the future is: What district has the most the most amount of violent crimes? This might give me understanding to which cases are civil vs criminal.
+</p>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+$.getJSON("http://127.0.0.1:8000/data.json", function(data_from_file){
+
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    console.log("hey you got data")
+    console.log(data_from_file)
+
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: ['District 1','District 2','District 3','District 4','District 5','District 6','District 7','None'],
+            datasets: [{
+                label: 'Amount of Warnings',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [141,155,151,138,67,57,0,23],
+            },{
+                label: 'Amount of Citations',
+                backgroundColor: 'rgba(63, 142, 191, 0.57)',
+                borderColor: 'rgba(63, 142, 191, 0.57)',
+                data: [204,208,256,181,111,83,1,16],
+            },{
+                label: 'Amount of Arrest',
+                backgroundColor: 'rgb(63, 74, 191)',
+                borderColor: 'rgb(63, 74, 191)',
+                data: [200,254,113,149,60,186,0,23],
+            }
+            ]
+        },
+
+        // Configuration options go here
+        options: {
+        scales: {
+                yAxes: [{
+                    display: true,
+                    stacked: false,
+                    ticks: {
+                        min: 0, // minimum value
+                        max: 300 // maximum value
+                    }
+                }]
+            }
+        }
+    });
+
+})
+
+</script>
+</body>
+</html>
