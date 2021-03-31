@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reset.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/black.min.css" id="theme">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/league.min.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css" id="highlight-theme">
@@ -194,6 +194,11 @@
 						<p>How do we change the <a href="https://revealjs.com/themes/">theme</a>?</p>
 						<p>(Easy)</p>
 					</section>
+
+					<section>
+						Changes themes using a separate spreadsheet. Link using
+						<a href = "https://cdnjs.com/libraries/reveal.js/3.6.0"> RevealJS CDN </a>. This is usually definied at the top of the page but you can also create your own themes!
+					</section>
 				</section>
 
 				<section>
@@ -203,10 +208,15 @@
 						<p>(Easy-Medium)</p>
 					</section>
 					<section>
-						We add Notes by using an <aside> tag
+						We add Notes by using an a tag
+						<pre><code data-trim data-line-numbers=1,3|2><script type="text/template">
+						<aside class="notes">
+    				Your notes go here
+  					</aside>
+						</script></code></pre>
 
 						<aside class = "notes">
-							These are notes
+							These are notes for my presentation that I can use for reference
 						</aside>
 					</section>
 				</section>
