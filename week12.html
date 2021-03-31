@@ -227,6 +227,14 @@
 						<p>How do we add <a href="https://revealjs.com/math/">math</a>?</p>
 						<p>(Medium)</p>
 					</section>
+					<section>
+						<h2>The Lorenz Equations</h2>
+  						\[\begin{aligned}
+  						\dot{x} &amp; = \sigma(y-x) \\
+  						\dot{y} &amp; = \rho x - y - xz \\
+  						\dot{z} &amp; = -\beta z + xy
+  						\end{aligned} \]
+					</section>
 				</section>
 
 			</div>
@@ -236,6 +244,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/notes/notes.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/markdown/markdown.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+		<script src ="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/math/math.min.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -244,7 +253,13 @@
 				hash: true,
 				slideNumber: 'c/t',
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				math: {
+      				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+      				config: 'TeX-AMS_HTML-full',
+      				// pass other options into `MathJax.Hub.Config()`
+      				TeX: { Macros: { RR: "{\\bf R}" } }
+    			},
+    			plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath]
 			});
 		</script>
 	</body>
