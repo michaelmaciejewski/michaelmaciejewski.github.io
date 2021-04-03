@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Weekly Assignment #10</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/league.min.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css" id="highlight-theme">
+
+	</head>
+	<body>
+		<div class = "reveal">
+			<div class = "slides">
+				<section>
+					<h3> Weekly Assignment #10 </h3>
+					<p style="color:#2c68c9; font-weight:bold; font-family:serif;" > Michael Maciejewski</p>
+				</section>
+				<section>
+					<h3  style="color:#2c68c9">Presentations in Reveal.js </h3>
+					<ul>
+						<li> Introduction/Motivation</li>
+						<li> Adding a background </li>
+						<li> Adding an image </li>
+						<li> Conclusion </li>
+					</ul>
+				</section>
+				<section data-transition = "convex">
+					<section data-transition = "slide">
+					<h3  style="color:#2c68c9"> Introduction</h3>
+					<p> Revealjs is an open source HTML framework that allows for creative presentations to be displayed in a web browser.</p>
+					</section>
+
+					<section>
+						<h3  style="color:#2c68c9">How to install Revealjs</h3>
+							<ol>
+								<li> One of the easiest ways to use Revealjs is by using a content delivery network. This allows us to link to the presentation framework.</li>
+								<li> This <a href = "https://cdnjs.com/libraries/reveal.js/3.6.0" >JS CDN open source</a>  links to many frameworks to import to your HTML page</li>
+							</ol>
+						
+					</section>
+
+				</section>
+				</section>
+				<section data-transition = "convex">
+					<section data-background-color="rgba(137, 176, 239, 0.78)">
+						<h3  style="color:#00328f"> How to make a nice background in revealjs</h3>
+						<p style = "font-size: 30px"> You can change the CSS color of the background by including hex values, keywords, or rgba values in a section. A helpful link that I use to pick a color for the background is the <a href = "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool"> CSS Color Picker </a></p>
+						<p style = "font-size: 20px"> Use the class <b class = "fragment" style = "color:#00328f "> data-background-color </b> to specify what your background is</p>
+						<pre><code class = "html fragment" data-trim data-line-numbers = 1,3|2><script type = "text/template">
+							<section data-background-color = "rgb(0,0,0)">
+								<h3> This is my new background </h3>
+							</section>
+						</script></code></pre>
+					</section>
+					<section data-background-color="rgba(137, 176, 239, 0.78)">
+						<h3 style="color:#00328f"> How to make a image background in revealjs</h3>
+						<p style = "font-size: 30px"> You can also do many other things with the background include adding an image </p>
+						<p style = "font-size: 20px"> Use the class <b class = "fragment" style = "color:#00328f "> data-background-image </b> to specify the source of your image</p>
+						<pre><code class = "html fragment" data-trim data-line-numbers = 1,3|2><script type = "text/template">
+							<section data-background-image = "http://example.com/image.png">
+								<h3> This is my new background image </h3>
+							</section>
+						</script></code></pre>
+					</section>
+					<section data-background-image = "https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+						<h3> Here is a background image!</h3>
+					</section>
+					<section data-background-image = "https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"  data-background-size="100px" data-background-repeat="repeat">
+						<h3 style="color:#000000" > Here is a background image that repeats!</h3>
+						<p style = "color:#000000"> Use this line of code to change the size and make the image repeat!</p>
+						<pre><code class = "html fragment" data-trim data-noescape data-line-numbers = 1,3|2><script type = "text/template">
+							<section data-background-image = "http://example.com/image.png" data-background-size="100px" data-background-repeat="repeat">
+								<h3> This is my new repeating background image</h3>
+							</section>
+						</script></code></pre>
+					</section>
+				</section>
+				<section>
+					<section data-background-color="rgba(137, 176, 239, 0.78)">
+						<h3 style="color:#00328f" > How to add an image to revealjs</h3>
+						<img src = "https://t4.ftcdn.net/jpg/03/86/29/31/240_F_386293146_ob1Q7terpriCLVn4RC71TsMkSocA545k.jpg">
+					</section>
+					<section data-background-color="rgba(137, 176, 239, 0.78)">
+						<h3 style="color:#00328f" > Just use a tag and add a source!</h3>
+						<pre><code class = "html" data-trim data-line-numbers =2 ><script type = "text/template">
+							<section>
+								<img src = "https://example/image.jpeg">
+							</section>
+						</script></code></pre>
+					</section>
+					<section data-background-color="rgba(137, 176, 239, 0.78)">
+						<h3 style="color:#00328f"> How to add a video</h3>
+						<video data-autoplay data-src="telepoorte_fnl.mp4" background-image-repeat = "repeat" type = "video/mp4">Teleportation</video>
+					</section>
+					<section data-background-color="rgba(137, 176, 239, 0.78)">
+						<h3 style="color:#00328f"> Adding a video</h3>
+						<pre><code data-trim data-noescape class = "fragment fade-up html"  data-line-numbers =2|3,4 ><script type = "text/template">
+							<section>
+								<video data-autoplay data-src="example.mp4" 
+								background-image-repeat = "repeat" 
+								type = "video/mp4">Video Title</video>
+							</section>
+						</script></code></pre>
+				</section>
+			</section>
+				<section data-background-color="rgba(137, 176, 239, 0.78)">
+					<h3 style="color:#00328f"> Conclusion</h3>
+					<ul>
+						<li>Reveal Js is great for presenting and displaying information step by steo</li>
+						<li>Using Revealjs <a href = "https://revealjs.com/" >documentation</a> is most helpful in finding new tools</li>
+						<li> You can change the background color, add images, videos, and do many other interesting things with Reveal JS.</li>
+						</ul>
+					
+				</section>
+				
+					
+
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/math/math.min.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				backgroundTransition: 'slide',
+				autoPlayMedia: true,
+				slideNumber: 'h/v',
+				math: {
+				      mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				      config: 'TeX-AMS_HTML-full',
+				      // pass other options into `MathJax.Hub.Config()`
+				      TeX: { Macros: { RR: "{\\bf R}" } }
+				    },
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealHighlight, RevealNotes, RevealMath ]
+			});
+		</script>
+	</body>
+</html>
