@@ -1,0 +1,317 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>WA#11</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/simple.min.css" id="theme">
+
+		<script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css" id="highlight-theme">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.min.js">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Weekly Assignment #11</h3>
+					<p>Michael Maciejewski</p>
+				</section>
+				<section>
+				<section>
+					<h3 style = "font-size: 50px; color: #ff05f7;">How to install vega into your HTML</h3>
+					<p style = "font-size: 30px"> Insert script tags in the header </p>
+					<p style = "font-size: 30px"> Find more ways to implement Vega <a href = "https://vega.github.io/vega/usage/">here</a></p>
+					<pre><code data-trim data-line-numbers = 1,2,3><script type="text/template">
+						<script src="https://cdn.jsdelivr.net/npm/vega@3"></ script>
+						<script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></ script>
+						<script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></ script>
+					</script></code></pre>
+				</section>
+
+				<section>
+						<h3 style = "font-size: 50px; color: #ff05f7;">How to add data/visualizations</h3>
+						<p style = "font-size: 30px"> The &lt;div&gt;make sure that the spec, opt, and embed script is implemented as this is where we insert our data</p>
+						<pre><code data-trim data-line-numbers = 1,8|2|3,4,5,6><script type="text/template">
+						<body>
+							<div id="vis"></div>
+							<script type="text/javascript">
+								var spec = {};  /* JSON dump of your chart's spec */
+								var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+								vegaEmbed("#vis", spec, opt);
+							< /script>
+						</body>
+						</script></code></pre>
+				</section>
+				</section>
+
+				<section>
+				<section>
+					<h3 style = "font-size: 50px; color: #ff05f7;"> Here is a simple chart</h3>
+					<p style = "font-size: 30px"> Insert the <a href = "https://vega.github.io/">template</a> for the data</p>
+					<p style = "font-size: 30px"> Insert the <a href = "https://github.com/vega/vega-datasets/tree/master/data">source</a> for the data</p>
+					<pre><code html data-trim data-line-numbers = 2|4,5|7|8,9,10|12|13,14|16|17,18><script type="text/template">
+						var spec = {
+						"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+						}
+						"data": {
+    						"url": "https://vega.github.io/vega-datasets/data/cars.json"
+  						},
+  						"encoding": {
+  							 	"color": {
+     							"field": "Origin",
+      							"type": "nominal"
+    						},
+  							  	"x": {
+      								"field": "Horsepower",
+      								"type": "quantitative"
+    						},
+    							"y": {
+     								"field": "Miles_per_Gallon",
+     								 "type": "quantitative"
+    							}
+  							},
+ 							 "mark": "point"
+						};
+					</script></code></pre>
+				</section>
+				
+
+
+				<section>
+					<!--Vega visualization goes here-->
+					<div id="vis"></div>
+					<script type="text/javascript">
+					var spec = {	
+
+  						"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  							"config": {
+  								 "view": {
+    								  "continuousHeight": 600,
+     								  "continuousWidth": 800
+  								  }
+  							},
+  							"width":800,
+  							"height": 600,
+ 							 "data": {
+    							"url": "https://vega.github.io/vega-datasets/data/cars.json"
+  							},
+  							"encoding": {
+  							 	"color": {
+     							"field": "Origin",
+      							"type": "nominal"
+    						},
+  							  	"x": {
+      								"field": "Horsepower",
+      								"type": "quantitative"
+    						},
+    							"y": {
+     								"field": "Miles_per_Gallon",
+     								 "type": "quantitative"
+    							}
+  							},
+ 							 "mark": "point"
+					};
+					var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+					vegaEmbed("#vis", spec, opt);
+					</script>
+				</section>
+			</section>
+			<section>
+
+				<section>
+					<h3 style = "font-size: 50px; color: #ff05f7;">How to different properties to this viz using vega</h3>
+					<ol style = "font-size: 30px" >
+						<li>Insert specific <a href = "https://vega.github.io/vega-lite/docs/encoding.html" > encoding</a> called <b>"shape"</b></li>
+						<li>Specify the field which to associate with, in this case "Species"</li>
+					</ol>
+
+					
+					<pre><code html data-trim data-line-numbers = 6|7,8><script type="text/template">
+						"encoding": {
+  							 	"color": {
+     							"field": "Species",
+      							"type": "nominal"
+    						},
+    							"shape": {
+    								"field":"Species", 
+    								"type":"nominal"
+    						},
+  							  	"x": {
+      								"field": "Flipper Length (mm)",
+      								"type": "quantitative",
+      								"scale": {"zero":false}
+    						},
+    							"y": {
+     								"field": "Body Mass (g)",
+     								 "type": "quantitative",
+     								 "scale": {"zero":false}
+    							}
+  							},
+					</script></code></pre>
+				</section>
+
+				<section>
+					<!--Vega visualization goes here-->
+					<div id="viss"></div>
+					<script type="text/javascript">
+					var spec = {	
+
+  						"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  							"config": {
+  								 "view": {
+    								  "continuousHeight": 600,
+     								  "continuousWidth": 800
+  								  }
+  							},
+  							"width":800,
+  							"height": 600,
+ 							 "data": {
+    							"url": "https://vega.github.io/vega-datasets/data/penguins.json"
+  							},
+  							"encoding": {
+  							 	"color": {
+     							"field": "Species",
+      							"type": "nominal"
+    						},
+    							"shape": {
+    								"field":"Species", 
+    								"type":"nominal"
+    						},
+  							  	"x": {
+      								"field": "Flipper Length (mm)",
+      								"type": "quantitative",
+      								"scale": {"zero":false}
+    						},
+    							"y": {
+     								"field": "Body Mass (g)",
+     								 "type": "quantitative",
+     								 "scale": {"zero":false}
+    							}
+  							},
+ 							 "mark": "point"
+ 							
+					};
+					var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+					vegaEmbed("#viss", spec, opt);
+					</script>
+				</section>
+				<section>
+					<h3 style = "font-size: 50px; color: #ff05f7;" > Results</h3>
+					<p> This visualization compares body mass and flipper size of penguins based on species. This graph represents three species. The data shows the the Gentoo Species is the largest compared to the other two species </p>
+					<p> Here is a link to the dataset <a href = "https://vega.github.io/vega-lite/examples/point_color_with_shape.html"> specifications </a></p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3 style = "font-size: 50px; color: #ff05f7;" >More Complex Data Visualization</h3>
+				</section>
+				<section>
+					<!--Vega visualization goes here-->
+					<div id="vis2"></div>
+					<script type="text/javascript">
+					var spec = {	
+
+  						"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  							"config": {
+  								 "view": {
+    								  "continuousHeight": 600,
+     								  "continuousWidth": 800
+  								  }
+  							},
+  							"width":800,
+  							"height": 600,
+ 							 "data": {
+    							"url": "https://vega.github.io/vega-datasets/data/zipcodes.csv"
+  							},
+  							"transform": [{"calculate": "substring(datum.zip_code, 0, 1)", "as": "digit"}],
+							  "projection": {
+							    "type": "albersUsa"
+							  },
+							  "mark": "circle",
+							  "encoding": {
+							    "longitude": {
+							      "field": "longitude",
+							      "type": "quantitative"
+							    },
+							    "latitude": {
+							      "field": "latitude",
+							      "type": "quantitative"
+							    },
+							    "size": {"value": 1},
+							    "color": {"field": "digit", "type": "nominal"}
+							  }		
+					};
+					var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+					vegaEmbed("#vis2", spec, opt);
+					</script>
+				</section>
+				<section>
+					<h3 style = "font-size: 50px; color: #ff05f7;">Results</h3>
+					<p>This visualizion is collection of zipcodes with the names of each city, state, and country. The points are plotted using a vega mapping dataset. Each color is cooridnated to the first number of the zip. This map shows how zip codes are spread across the country.</p>
+					<p> Here is a link to the dataset <a href = "https://vega.github.io/vega-lite/examples/geo_circle.html" > specifications </a></p>
+				</section>
+				<section>
+					<h3 style = "font-size: 50px; color: #ff05f7;"> Implementation</h3>
+					<pre><code html data-trim data-line-numbers = 2|12><script type="text/template">
+					var spec = {	
+  						"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  							"config": {
+  								 "view": {
+    								  "continuousHeight": 600,
+     								  "continuousWidth": 800
+  								  }
+  							},
+  							"width":800,
+  							"height": 600,
+ 							 "data": {
+    							"url": "https://vega.github.io/vega-datasets/data/zipcodes.csv"
+  							},
+  							"transform": [{"calculate": "substring(datum.zip_code, 0, 1)", "as": "digit"}],
+							  "projection": {
+							    "type": "albersUsa"
+							  },
+							  "mark": "circle",
+							  "encoding": {
+							    "longitude": {
+							      "field": "longitude",
+							      "type": "quantitative"
+							    },
+							    "latitude": {
+							      "field": "latitude",
+							      "type": "quantitative"
+							    },
+							    "size": {"value": 1},
+							    "color": {"field": "digit", "type": "nominal"}
+							  }		
+					};
+						
+					</script></code></pre>
+				</section>
+			</section>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'h/v',
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealHighlight ]
+			});
+		</script>
+	</body>
+</html>
