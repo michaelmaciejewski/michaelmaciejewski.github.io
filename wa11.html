@@ -60,11 +60,11 @@
 					<p style = "font-size: 30px"> Insert the <a href = "https://vega.github.io/">template</a> for the data</p>
 					<p style = "font-size: 30px"> Insert the <a href = "https://github.com/vega/vega-datasets/tree/master/data">source</a> for the data</p>
 					<pre><code html data-trim data-line-numbers = 2|4,5|7|8,9,10|12|13,14|16|17,18><script type="text/template">
+					<script type="text/javascript">
 						var spec = {
 						"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 						}
-						"data": {
-    						"url": "https://vega.github.io/vega-datasets/data/cars.json"
+						"data": { "url": "https://vega.github.io/vega-datasets/data/cars.json"
   						},
   						"encoding": {
   							 	"color": {
@@ -82,6 +82,7 @@
   							},
  							 "mark": "point"
 						};
+					< /script>
 					</script></code></pre>
 				</section>
 				
