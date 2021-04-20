@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>WA#11</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/simple.min.css" id="theme">
+
+		<script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/monokai.min.css" id="highlight-theme">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.min.js">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Weekly Assignment #12</h3>
+					<p>Michael Maciejewski</p>
+				</section>
+				<section>
+				<section>
+					<h3>Customizing Appearance, Font, Size</h3>
+				</section>
+				<section>
+					<div id ="vis" style = "min-width:100px"></div>
+					<script type="text/javascript">
+					var spec = {
+					  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+					  "data": {"url": "https://vega.github.io/vega-datasets/data/wheat.json"},
+					  "config":{"font":"monospace"},
+					  "title":{
+					  	"text": "Wheat Wages from 1570-1810",
+					  	"font": "monospace",
+					  	"fontSize":30,
+					  	"anchor":"start"
+					  },
+					  "config":{
+					  	"axis":{
+					  		"titleFont":"monospace",
+					  		"titleFontSize":20,
+					  		"titleColor":"blue",
+					  		"labelFont":"monospace",
+						  	}
+					  },
+					  "transform":[{
+					  	"filter":{
+					  		"field":"year",
+					  		"timeUnit":"year",
+					  		"range":[1565,1810]
+					  	}
+					  }],
+					  "width":900,
+					  "height": 400,
+					  "background":"rgba(63, 74, 191, 0.76)",
+					  "mark": {
+					  		"type": "area",
+					  		"line": {"color": "red"},
+					  		"point":true,
+					  		"color":{
+					  			"id":"rgb",
+					  			"x1" : 1.0,
+					  			"y1" : 1.0, 
+					  			"x2" : 1.0,
+					  			"y2" : 0.0, 
+					  			"gradient" : "linear",
+					  			"stops":[
+					  				{
+					  					"offset":0.0, 
+					  					"color":"white"
+					  				},
+					  				{
+					  					"offset":1.0, 
+					  					"color":"red"
+					  				}
+					  			]
+					  		}
+					  	},
+					  "encoding": {
+					    "x": {
+					    	"field": "year", 
+					    	"type": "temporal",
+					    	"axis":{
+					    		"format":"%Y",
+					    	}
+					    },
+					    "y": {
+					    	"field": "wages", 
+					    	"type": "quantitative",
+					    	"axis": {"format":"$"}
+					    }
+					  }
+					};
+					var opt = {"renderer": "canvas", "actions": false};
+					vegaEmbed("#vis", spec, opt);
+				</script>
+				</section>
+				<section>
+					<h3>Wheat Visualization</h3>
+					<p>
+						This data shows the wheat wages over the years of 1570 and 1810. Most interestingly, the data shows wages had a gradual increase and then significant jump showing that wages continued to raise and most dramatically during the beginning to mid 1700's.
+					</p>
+				</section>
+				<section>
+					<h3> How to make a gradient</h3>
+					<ul>
+						<li style = "font-size: 20px">In "color" specific gradient attributes. x1,y1,x2,y2 properties configure the direction on a [0,1] scale</li>
+						<li style = "font-size: 20px"> Specify "gradient" as "linear"</li>
+						<li style = "font-size: 20px"> Specify the gradient stops to give it a color sequence </li>
+					</ul>
+					<pre><code data-trim class='js' data-line-numbers=4|7|8-12|13|14|16,17|20,21>
+						{
+							...
+							"mark": {
+					  		"type": "area",
+					  		"line": {"color": "red"},
+					  		"point":true,
+					  		"color":{
+					  			"id":"rgb",
+					  			"x1" : 1.0,
+					  			"y1" : 1.0, 
+					  			"x2" : 1.0,
+					  			"y2" : 0.0, 
+					  			"gradient" : "linear",
+					  			"stops":[
+					  				{
+					  				"offset":0.0, 
+					  				"color":"white"
+					  				},
+					  				{
+					  				"offset":1.0, 
+					  				"color":"red"
+					  				}
+					  			]
+					  		}
+					  	},
+							...
+						};
+					</code></pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Visualization with Facets, Concats, layering</h3>
+				</section>
+				<section>
+					<div id ="vis2" style = "min-width:100px"></div>
+					<script type="text/javascript">
+					var spec = {
+						"hconcat":[{
+							"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+					 	 	"data": {"url": "https://vega.github.io/vega-datasets/data/us-employment.csv"},
+					 	 	"height":400,
+					 	 	"width":400,
+					 	 	"title":"US Unemployment from 2006 - 2016",
+					 	 	"layer":[{
+							"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal",
+										"axis":{
+											"format":"%Y"
+										}
+									},
+									"y":{
+										"field":"construction",
+										"type":"quantitative",
+										"title":"Construction"
+									},
+									"color": {"value":"red"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal",
+										"axis":{
+											"format":"%Y"
+										}
+									},
+									"y":{
+										"field":"manufacturing",
+										"type":"quantitative",
+										"title": "Manufacturing"
+									},
+									"color": {"value":"green"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal",
+										"axis":{
+											"format":"%Y"
+										}
+									},
+									"y":{
+										"field":"retail_trade",
+										"type":"quantitative",
+										"title":"Retail"
+									},
+									"color": {"value":"grey"}
+								}
+							},{
+							"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal"
+									},
+									"y":{
+										"field":"professional_and_business_services",
+										"type":"quantitative",
+										"title":"Buisness"
+									
+									},
+									"color": {"value":"blue"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal"
+									},
+									"y":{
+										"field":"education_and_health_services",
+										"type":"quantitative",
+										"title": "Education and Health"
+										
+									},
+									"color": {"value":"purple"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal"
+									},
+									"y":{
+										"field":"leisure_and_hospitality",
+										"type":"quantitative",
+										"title":"Leisure and Hospitality"
+									},
+									"color": {"value":"pink"}
+								}
+							}],
+
+
+
+						},{
+							"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+					 	 	"data": {"url": "https://vega.github.io/vega-datasets/data/penguins.json"},
+					 	 	"height":300,
+					 	 	"width":300,
+					 	 	"transform": [{"filter": "datum.Sex != null"}],
+					 	 	"title":"Amount of Penguins Per Species",
+					 	 	"mark":"bar",
+					 	 	"encoding": {
+								"x": {
+									"field": "Species",
+									"type": "nominal"
+								},
+								"y": {
+									"aggregate": "count", 
+									"title": "Population",
+									"type": "quantitative"
+								},
+								"color": {
+									"field": "Sex",
+									"type": "nominal"
+								}
+							}
+
+					}
+					]}
+
+					var opt = {"renderer": "canvas", "actions": false};
+					vegaEmbed("#vis2", spec, opt);
+					</script>
+				</section>
+				<section>
+				<h3>Vizualization Interpretation</h3>
+				<p>This visualization shows two graphs. The first graph looks at unemployment from 2006-2016. Based on this graph education and health care sevices were responsible for much unemployment. Furthermore, you can tell that the market changed around 2009, decreasing the amount of unemployment. The second graph shows the amount of penguins per species. The graph tells that the Adelie species has the largest population and that gender is spread pretty equally throughout</p>
+				</section>
+				<section>
+					<h3>Code from the section above</h3>
+					<ul>
+						<li style = "font-size: 20px">Use "hconcat" to concat two visuals</li>
+						<li style = "font-size: 20px"> Used Layers to create differt lines on a line graph. Each line needs its own "encoding" and "mark" attribute.</li>
+						<li style = "font-size: 20px"> Create a stacked bar chart based on gender and species. </li>
+					</ul>
+					<pre><code data-trim class='js' data-line-numbers=3|9|11-26|27-43|44-60|61-75|76-90|91-104|113|116-135>
+						{
+							...
+							"hconcat":[{
+							"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+					 	 	"data": {"url": "https://vega.github.io/vega-datasets/data/us-employment.csv"},
+					 	 	"height":400,
+					 	 	"width":400,
+					 	 	"title":"US Unemployment from 2006 - 2016",
+					 	 	"layer":[{
+							"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal",
+										"axis":{
+											"format":"%Y"
+										}
+									},
+									"y":{
+										"field":"construction",
+										"type":"quantitative",
+										"title":"Construction"
+									},
+									"color": {"value":"red"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal",
+										"axis":{
+											"format":"%Y"
+										}
+									},
+									"y":{
+										"field":"manufacturing",
+										"type":"quantitative",
+										"title": "Manufacturing"
+									},
+									"color": {"value":"green"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal",
+										"axis":{
+											"format":"%Y"
+										}
+									},
+									"y":{
+										"field":"retail_trade",
+										"type":"quantitative",
+										"title":"Retail"
+									},
+									"color": {"value":"grey"}
+								}
+							},{
+							"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal"
+									},
+									"y":{
+										"field":"professional_and_business_services",
+										"type":"quantitative",
+										"title":"Buisness"
+									
+									},
+									"color": {"value":"blue"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal"
+									},
+									"y":{
+										"field":"education_and_health_services",
+										"type":"quantitative",
+										"title": "Education and Health"
+										
+									},
+									"color": {"value":"purple"}
+								}
+							},{
+								"mark": "line",
+								"encoding":{
+									"x":{
+										"field":"month",
+										"type":"temporal"
+									},
+									"y":{
+										"field":"leisure_and_hospitality",
+										"type":"quantitative",
+										"title":"Leisure and Hospitality"
+									},
+									"color": {"value":"pink"}
+								}
+							}],
+
+
+
+						},{
+							"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+					 	 	"data": {"url": "https://vega.github.io/vega-datasets/data/penguins.json"},
+					 	 	"height":300,
+					 	 	"width":300,
+					 	 	"transform": [{"filter": "datum.Sex != null"}],
+					 	 	"title":"Amount of Penguins Per Species",
+					 	 	"mark":"bar",
+					 	 	"encoding": {
+								"x": {
+									"field": "Species",
+									"type": "nominal"
+								},
+								"y": {
+									"aggregate": "count", 
+									"title": "Population",
+									"type": "quantitative"
+								},
+								"color": {
+									"field": "Sex",
+									"type": "nominal"
+								}
+							}
+
+						}
+					]}
+							...
+						};
+					</code></pre>
+				</section>
+			</section>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/plugin/highlight/highlight.min.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'h/v',
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealHighlight ]
+			});
+		</script>
+	</body>
+</html>
