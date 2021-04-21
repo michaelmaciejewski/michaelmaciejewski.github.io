@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+	<title>
+			Michael Maciejewski
+	</title>
+
+	<meta charset = "utf-8">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+
+	<link href="wa13.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+	<div class = "container" id ="vis" style = "min-width:100px"></div>
+		<script type="text/javascript">
+		var spec = {
+		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+		  "data": {"url": "https://vega.github.io/vega-datasets/data/wheat.json"},
+		  "config":{"font":"monospace"},
+		  "title":{
+		  	"text": "Wheat Wages from 1570-1810",
+		  	"font": "monospace",
+		  	"fontSize":30,
+		  	"anchor":"start"
+		  },
+		  "config":{
+		  	"axis":{
+		  		"titleFont":"monospace",
+		  		"titleFontSize":20,
+		  		"titleColor":"blue",
+		  		"labelFont":"monospace",
+			  	}
+		  },
+		  "transform":[{
+		  	"filter":{
+		  		"field":"year",
+		  		"timeUnit":"year",
+		  		"range":[1565,1810]
+		  	}
+		  }],
+		  "width":900,
+		  "height": 400,
+		  "background":"rgba(63, 74, 191, 0.76)",
+		  "mark": {
+		  		"type": "area",
+		  		"line": {"color": "red"},
+		  		"point":true,
+		  		"color":{
+		  			"id":"rgb",
+		  			"x1" : 1.0,
+		  			"y1" : 1.0, 
+		  			"x2" : 1.0,
+		  			"y2" : 0.0, 
+		  			"gradient" : "linear",
+		  			"stops":[
+		  				{
+		  					"offset":0.0, 
+		  					"color":"white"
+		  				},
+		  				{
+		  					"offset":1.0, 
+		  					"color":"red"
+		  				}
+		  			]
+		  		}
+		  	},
+		  "encoding": {
+		    "x": {
+		    	"field": "year", 
+		    	"type": "temporal",
+		    	"axis":{
+		    		"format":"%Y",
+		    	}
+		    },
+		    "y": {
+		    	"field": "wages", 
+		    	"type": "quantitative",
+		    	"axis": {"format":"$"}
+		    }
+		  }
+		};
+		var opt = {"renderer": "canvas", "actions": false};
+		vegaEmbed("#vis", spec, opt);
+	</script>
+</body>
