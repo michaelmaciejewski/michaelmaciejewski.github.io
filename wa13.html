@@ -109,4 +109,88 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis2", spec, opt);
 	</script>
+	<div class = "container" id ="vis2" style = "min-width:100px"></div>
+		<script type="text/javascript">
+		var spec = {
+		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
+		  "mark":{
+		  	"type":"line",
+		  	"point":"true"
+		  	// "interpolate": "step-after"
+		  },
+		  "title":"Dogecoin volume of Data 2021",
+		  "transform":[{
+		  	"filter":{
+		  		"field":"Date",
+		  		"timeUnit":"monthdayyear",
+		  	    "range":["Jan 01 2021","Dec 01 2022"]
+		  	}
+		  }],
+		  "height":300,
+		  "width":900,
+		  "encoding": {
+		  	"x":{
+		  		"field": "Date",
+		  		"timeUnit": "monthdayyear"
+		  	},
+		  	"y":{
+		  		"field":"Volume", 
+		  		"type":"quantitative"
+		  	},
+		  	"tooltip" : 
+		  	[{
+		  		"field":"Volume",
+		  		"type":"quantitative"
+		  	},
+		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+		  	]
+		  }
+		  
+		 
+		};
+		var opt = {"renderer": "canvas", "actions": false};
+		vegaEmbed("#vis2", spec, opt);
+	</script>
+	<div class = "container" id ="vis3" style = "min-width:100px"></div>
+		<script type="text/javascript">
+		var spec = {
+		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+		  "data": {"url": "2021.csv"},
+		  "mark":{
+		  	"type":"line",
+		  	"point":"true"
+		  	// "interpolate": "step-after"
+		  },
+		  "title":"Elon Musk Tweets 2021",
+		  "height":300,
+		  "width":900,
+		  "encoding": {
+		  	"x":{
+		  		"field": "Date of Creation",
+		  		"timeUnit": "monthdayyear"
+		  	},
+		  	"y":{
+		  		"aggregate":"count", 
+		  		"type":"quantitative"
+		  	},
+		  	"tooltip" : 
+		  	[{
+		  		"field":"Date of Creation",
+		  		"type":"quantitative"
+		  	},
+		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+		  	]
+		  }
+		  
+		 
+		};
+		var opt = {"renderer": "canvas", "actions": false};
+		vegaEmbed("#vis3", spec, opt);
+	</script>
+
+
+
 </body>
