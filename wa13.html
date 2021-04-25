@@ -25,71 +25,88 @@
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-		  "data": {"url": "https://vega.github.io/vega-datasets/data/wheat.json"},
-		  "config":{"font":"monospace"},
-		  "title":{
-		  	"text": "Wheat Wages from 1570-1810",
-		  	"font": "monospace",
-		  	"fontSize":30,
-		  	"anchor":"start"
+		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
+		  "mark":{
+		  	"type":"line",
+		  	"point":"true"
+		  	// "interpolate": "step-after"
 		  },
-		  "config":{
-		  	"axis":{
-		  		"titleFont":"monospace",
-		  		"titleFontSize":20,
-		  		"titleColor":"blue",
-		  		"labelFont":"monospace",
-			  	}
-		  },
+		  "title":"Dogecoin volume of Data 2015-2021",
 		  "transform":[{
 		  	"filter":{
-		  		"field":"year",
+		  		"field":"Date",
 		  		"timeUnit":"year",
-		  		"range":[1565,1810]
+		  	    "range":[2015,2021]
 		  	}
 		  }],
+		  "height":300,
 		  "width":900,
-		  "height": 400,
-		  "background":"rgba(63, 74, 191, 0.76)",
-		  "mark": {
-		  		"type": "area",
-		  		"line": {"color": "red"},
-		  		"point":true,
-		  		"color":{
-		  			"id":"rgb",
-		  			"x1" : 1.0,
-		  			"y1" : 1.0, 
-		  			"x2" : 1.0,
-		  			"y2" : 0.0, 
-		  			"gradient" : "linear",
-		  			"stops":[
-		  				{
-		  					"offset":0.0, 
-		  					"color":"white"
-		  				},
-		  				{
-		  					"offset":1.0, 
-		  					"color":"red"
-		  				}
-		  			]
-		  		}
-		  	},
 		  "encoding": {
-		    "x": {
-		    	"field": "year", 
-		    	"type": "temporal",
-		    	"axis":{
-		    		"format":"%Y",
-		    	}
-		    },
-		    "y": {
-		    	"field": "wages", 
-		    	"type": "quantitative",
-		    	"axis": {"format":"$"}
-		    }
+		  	"x":{
+		  		"field": "Date",
+		  		"timeUnit": "monthyear"
+		  	},
+		  	"y":{
+		  		"field":"Volume", 
+		  		"type":"quantitative"
+		  	},
+		  	"tooltip" : 
+		  	[{
+		  		"field":"Volume",
+		  		"type":"quantitative"
+		  	},
+		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+		  	]
 		  }
+		  
+		 
 		};
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis", spec, opt);
+	</script>
+	<div class = "container" id ="vis2" style = "min-width:100px"></div>
+		<script type="text/javascript">
+		var spec = {
+		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
+		  "mark":{
+		  	"type":"line",
+		  	"point":"true"
+		  	// "interpolate": "step-after"
+		  },
+		  "title":"Dogecoin volume of Data 2021",
+		  "transform":[{
+		  	"filter":{
+		  		"field":"Date",
+		  		"timeUnit":"monthdayyear",
+		  	    "range":["Jan 01 2021","Dec 01 2022"]
+		  	}
+		  }],
+		  "height":300,
+		  "width":900,
+		  "encoding": {
+		  	"x":{
+		  		"field": "Date",
+		  		"timeUnit": "monthdayyear"
+		  	},
+		  	"y":{
+		  		"field":"Volume", 
+		  		"type":"quantitative"
+		  	},
+		  	"tooltip" : 
+		  	[{
+		  		"field":"Volume",
+		  		"type":"quantitative"
+		  	},
+		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+		  	]
+		  }
+		  
+		 
+		};
+		var opt = {"renderer": "canvas", "actions": false};
+		vegaEmbed("#vis2", spec, opt);
 	</script>
 </body>
