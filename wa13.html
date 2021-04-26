@@ -123,16 +123,16 @@
 		  "transform":[{
 		  	"filter":{
 		  		"field":"Date",
-		  		"timeUnit":"monthdayyear",
+		  		"timeUnit":"monthdateyear",
 		  	    "range":["Jan 01 2021","Dec 01 2022"]
 		  	}
 		  }],
 		  "height":300,
-		  "width":900,
+		  "width":500,
 		  "encoding": {
 		  	"x":{
 		  		"field": "Date",
-		  		"timeUnit": "monthdayyear"
+		  		"timeUnit": "monthdayeyear"
 		  	},
 		  	"y":{
 		  		"field":"Volume", 
@@ -157,39 +157,105 @@
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-		  "data": {"url": "2021.csv"},
+		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/2021.csv"},
 		  "mark":{
-		  	"type":"line",
+		  	"type":"bar",
 		  	"point":"true"
 		  	// "interpolate": "step-after"
 		  },
 		  "title":"Elon Musk Tweets 2021",
+		  "transform":[{
+		  	"filter":{
+		  		"field":"date",
+		  		"timeUnit":"monthdateyear",
+		  	    "range": ["Jan 01 2021","Dec 01 2022"]
+		  	}
+
+		  }],
+
 		  "height":300,
-		  "width":900,
+		  "width":500,
 		  "encoding": {
 		  	"x":{
-		  		"field": "Date of Creation",
-		  		"timeUnit": "monthdayyear"
+		  		"field": "date",
+		  		"timeUnit": "monthdateyear",
+		  		 "range":["Jan-01-2021","Dec-01-2022"]
 		  	},
 		  	"y":{
 		  		"aggregate":"count", 
-		  		"type":"quantitative"
+		  		"type":"quantitative",
+		  		"title":"Number of Tweets",
 		  	},
 		  	"tooltip" : 
 		  	[{
-		  		"field":"Date of Creation",
-		  		"type":"quantitative"
+		  		"field":"date",
+		  		"timeUnit":"monthdayyear"
 		  	},
-		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
-		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+		  	{"field":"day", "type":"quantitative"},
+		  	{"field":"hour", "type":"quantitative"},
+		  	{"field":"tweet", "type":"nominal"},
+		  	{"field":"nlikes", "type":"quantitative"}
 		  	]
-		  }
-		  
+		  },
 		 
 		};
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis3", spec, opt);
 	</script>
+	<div class = "container" id ="vis4" style = "min-width:100px"></div>
+		<script type="text/javascript">
+		var spec = {
+		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/2021.csv"},
+		  "mark":{
+		  	"type":"bar",
+		  	"point":"true"
+		  	// "interpolate": "step-after"
+		  },
+		  "title":"Elon Musk Tweets 2021",
+		  
+		  "transform":[{
+				"filter":"datum.nlikes > 100000"
+		}],
+		  "height":300,
+		  "width":500,
+		  "encoding": {
+		  	
+		  	"x":{
+		  		"field": "date",
+		  		"timeUnit": "monthdateyear",
+		  		 "range":["Jan-01-2021","Dec-01-2022"]
+		  	},
+		  	"y":{
+		  		"aggregate":"count",
+		  		"type":"quantitative",
+		  		"title":"Number of Tweets",
+		  	},
+		  	"tooltip" : 
+		  	[{
+		  		"field":"date",
+		  		"timeUnit":"monthdayyear",
+		  		"title":"date"
+		  	},
+		  	{"field":"day", "type":"quantitative"},
+		  	{"field":"hour", "type":"quantitative"},
+		  	{"field":"tweet", "type":"nominal"},
+		  	{"field":"nlikes", "type":"quantitative"}
+		  	]
+		 //  	"color":{
+		 //  		"field":"nlikes",
+		 //  		"filter":"datum.nlikes > '100000'"
+			// },
+	}
+
+		 
+		};
+		var opt = {"renderer": "canvas", "actions": false};
+		vegaEmbed("#vis4", spec, opt);
+	</script>
+		
+		
+
 
 
 
