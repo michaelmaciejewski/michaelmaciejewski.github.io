@@ -21,78 +21,127 @@
 
 </head>
 <body>
+	<div class ="header">
+		<h1> Weekly Assignment 13 </h1>
+		<h2> INFO 3402</h2>
+		<h3> Michael Maciejewski </h3>
+	</div>
+	<br>
+	<div class = "container">
+		<div class = "row">
+			<div class = "card">
+				<h4> Examining how Dogecoin price is influenced by Social Media </h4>
+			</div>
+		</div>
+	</div>
 	<div class = "container" id ="vis" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
-		  "mark":{
-		  	"type":"line",
-		  	"point":"true"
-		  	// "interpolate": "step-after"
-		  },
-		  "title":"Dogecoin volume of Data 2015-2021",
-		  "transform":[{
-		  	"filter":{
-		  		"field":"Date",
-		  		"timeUnit":"year",
-		  	    "range":[2015,2021]
-		  	}
-		  }],
-		  "height":300,
-		  "width":900,
-		  "encoding": {
-		  	"x":{
-		  		"field": "Date",
-		  		"timeUnit": "monthyear"
-		  	},
-		  	"y":{
-		  		"field":"Volume", 
-		  		"type":"quantitative"
-		  	},
-		  	"tooltip" : 
-		  	[{
-		  		"field":"Volume",
-		  		"type":"quantitative"
-		  	},
-		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
-		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
-		  	]
-		  }
+		  "hconcat":[
+		  	{
+			  "mark":{
+			  	"type":"line",
+			  	"point":"true"
+			  	// "interpolate": "step-after"
+			  },
+			  "title":"Dogecoin volume of Data 2015-2021",
+			  "transform":[{
+			  	"filter":{
+			  		"field":"Date",
+			  		"timeUnit":"year",
+			  	    "range":[2015,2021]
+			  	}
+			  }],
+			  "height":300,
+			  "width":400,
+			  "encoding": {
+			  	"x":{
+			  		"field": "Date",
+			  		"timeUnit": "monthyear"
+			  	},
+			  	"y":{
+			  		"field":"Volume", 
+			  		"type":"quantitative"
+			  	},
+			  	"tooltip" : 
+			  	[{
+			  		"field":"Volume",
+			  		"type":"quantitative"
+			  	},
+			  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+			  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+			  	]
+			  }
+			},{
+					"mark":{
+				  	"type":"line",
+				  	"point":"true"
+				  	// "interpolate": "step-after"
+				  },
+				  "title":"Dogecoin volume of Data 2021",
+				  "transform":[{
+				  	"filter":{
+				  		"field":"Date",
+				  		"timeUnit":"monthdateyear",
+				  	    "range":["Jan 01 2021","Dec 01 2022"]
+				  	}
+				  }],
+				  "height":300,
+				  "width":400,
+				  "encoding": {
+				  	"x":{
+				  		"field": "Date",
+				  		"timeUnit": "monthdayeyear"
+				  	},
+				  	"y":{
+				  		"field":"Volume", 
+				  		"type":"quantitative"
+				  	},
+				  	"tooltip" : 
+				  	[{
+				  		"field":"Volume",
+				  		"type":"quantitative"
+				  	},
+				  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+				  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+				  	]
+				  }
+
+			}
+		  ]
 		  
 		 
 		};
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis", spec, opt);
 	</script>
-	<div class = "container" id ="vis2" style = "min-width:100px"></div>
+		<div class = "container" id ="mean" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
 		  "mark":{
 		  	"type":"line",
-		  	"point":"true"
+		  	"point":false
 		  	// "interpolate": "step-after"
 		  },
-		  "title":"Dogecoin volume of Data 2021",
-		  "transform":[{
-		  	"filter":{
-		  		"field":"Date",
-		  		"timeUnit":"monthdayyear",
-		  	    "range":["Jan 01 2021","Dec 01 2022"]
-		  	}
-		  }],
+		  "title":"Correlation between Doge Historic Price and Volume of Data",
 		  "height":300,
 		  "width":900,
 		  "encoding": {
 		  	"x":{
-		  		"field": "Date",
-		  		"timeUnit": "monthdayyear"
+		  		"field": "Close",
+		  		"type": "quantitative",
+		  		"scale":{"type":"log"},
+		  		"axis":{"tickCount":5}
 		  	},
 		  	"y":{
 		  		"field":"Volume", 
-		  		"type":"quantitative"
+		  		"type":"quantitative",
+		  		"scale":{"type":"log"},
+		  		"axis":{"tickCount":5}
 		  	},
 		  	"tooltip" : 
 		  	[{
@@ -101,102 +150,116 @@
 		  	},
 		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
 		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
-		  	]
-		  }
-		  
-		 
-		};
-		var opt = {"renderer": "canvas", "actions": false};
-		vegaEmbed("#vis2", spec, opt);
-	</script>
-	<div class = "container" id ="vis2" style = "min-width:100px"></div>
-		<script type="text/javascript">
-		var spec = {
-		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
-		  "mark":{
-		  	"type":"line",
-		  	"point":"true"
-		  	// "interpolate": "step-after"
-		  },
-		  "title":"Dogecoin volume of Data 2021",
-		  "transform":[{
-		  	"filter":{
+		  	],
+		  	"color":{
 		  		"field":"Date",
-		  		"timeUnit":"monthdateyear",
-		  	    "range":["Jan 01 2021","Dec 01 2022"]
+		  		"timeUnit":"year",
+		  		"scale": {"range": ["purple", "#ff0000", "teal"]}
 		  	}
-		  }],
-		  "height":300,
-		  "width":500,
-		  "encoding": {
-		  	"x":{
-		  		"field": "Date",
-		  		"timeUnit": "monthdayeyear"
-		  	},
-		  	"y":{
-		  		"field":"Volume", 
-		  		"type":"quantitative"
-		  	},
-		  	"tooltip" : 
-		  	[{
-		  		"field":"Volume",
-		  		"type":"quantitative"
-		  	},
-		  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
-		  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
-		  	]
 		  }
 		  
 		 
 		};
 		var opt = {"renderer": "canvas", "actions": false};
-		vegaEmbed("#vis2", spec, opt);
+		vegaEmbed("#mean", spec, opt);
 	</script>
 	<div class = "container" id ="vis3" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/2021.csv"},
-		  "mark":{
-		  	"type":"bar",
-		  	"point":"true"
-		  	// "interpolate": "step-after"
-		  },
-		  "title":"Elon Musk Tweets 2021",
-		  "transform":[{
-		  	"filter":{
-		  		"field":"date",
-		  		"timeUnit":"monthdateyear",
-		  	    "range": ["Jan 01 2021","Dec 01 2022"]
+		  
+		  "hconcat":[
+		  	{
+			  		"mark":{
+			  	"type":"bar",
+			  	"point":"true"
+			  	// "interpolate": "step-after"
+			  },
+			  "title":"Elon Musk Tweets 2011-2021",
+			  "transform":[{
+			  	"filter":{
+			  		"field":"date",
+			  		"timeUnit":"monthdateyear",
+			  	    "range": ["Jan 01 2011","Dec 01 2022"]
+			  	}
+
+			  }],
+
+			  "height":300,
+			  "width":400,
+			  "encoding": {
+			  	"x":{
+			  		"field": "date",
+			  		"timeUnit": "monthdateyear",
+			  		 "range":["Jan-01-2015","Dec-01-2022"]
+			  	},
+			  	"y":{
+			  		"aggregate":"count", 
+			  		"type":"quantitative",
+			  		"title":"Number of Tweets",
+			  	},
+			  	"tooltip" : 
+			  	[{
+			  		"field":"date",
+			  		"timeUnit":"monthdayyear"
+			  	},
+			  	{"field":"tweet", "type":"nominal"},
+			  	{"field":"nlikes", "type":"quantitative", "title":"Likes"}
+			  	],
+			  	 "color":{
+				  	"field":"date",
+				  	"timeUnit":"year"
+				  }
+			  }
+		  	},{
+		  		"mark":{
+			  	"type":"bar",
+			  	"point":"true"
+			  	// "interpolate": "step-after"
+			  },
+			  "title":"Elon Musk Tweets 2021",
+			  "transform":[{
+			  	"filter":{
+			  		"field":"date",
+			  		"timeUnit":"monthdateyear",
+			  	    "range": ["Jan 01 2021","Dec 01 2022"]
+			  	}
+
+			  }],
+
+			  "height":300,
+			  "width":400,
+			  "encoding": {
+			  	"x":{
+			  		"field": "date",
+			  		"timeUnit": "monthdateyear",
+			  		 "range":["Jan-01-202120","Dec-01-2022"]
+			  	},
+			  	"y":{
+			  		"aggregate":"count", 
+			  		"type":"quantitative",
+			  		"title":"Number of Tweets",
+			  	},
+			  	"tooltip" : 
+			  	[{
+			  		"field":"date",
+			  		"timeUnit":"monthdayyear"
+			  	},
+			  	{"field":"tweet", "type":"nominal"},
+			  	{"field":"nlikes", "type":"quantitative", "title":"Likes"}
+			  	],
+			  	 "color":{
+				  	"field":"date",
+				  	"timeUnit":"year"
+				  }
+			  }
 		  	}
 
-		  }],
+		  ]
 
-		  "height":300,
-		  "width":500,
-		  "encoding": {
-		  	"x":{
-		  		"field": "date",
-		  		"timeUnit": "monthdateyear",
-		  		 "range":["Jan-01-2021","Dec-01-2022"]
-		  	},
-		  	"y":{
-		  		"aggregate":"count", 
-		  		"type":"quantitative",
-		  		"title":"Number of Tweets",
-		  	},
-		  	"tooltip" : 
-		  	[{
-		  		"field":"date",
-		  		"timeUnit":"monthdayyear"
-		  	},
-		  	{"field":"day", "type":"quantitative"},
-		  	{"field":"hour", "type":"quantitative"},
-		  	{"field":"tweet", "type":"nominal"},
-		  	{"field":"nlikes", "type":"quantitative"}
-		  	]
-		  },
+		  
+		 
 		 
 		};
 		var opt = {"renderer": "canvas", "actions": false};
@@ -208,28 +271,25 @@
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 		  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/2021.csv"},
 		  "mark":{
-		  	"type":"bar",
-		  	"point":"true"
+		  	"type":"line",
+		  	"point":false
 		  	// "interpolate": "step-after"
 		  },
-		  "title":"Elon Musk Tweets 2021",
-		  
-		  "transform":[{
-				"filter":"datum.nlikes > 100000"
-		}],
-		  "height":300,
-		  "width":500,
+		  "title":"Elon Musk Tweets by Popularity (likes and retweets)",
+		 
+
+		  "height":500,
+		  "width":800,
 		  "encoding": {
-		  	
 		  	"x":{
-		  		"field": "date",
-		  		"timeUnit": "monthdateyear",
-		  		 "range":["Jan-01-2021","Dec-01-2022"]
+		  		"field": "nlikes",
+		  		"type":"quantitative",
+		  		"title":"Number of Likes"
 		  	},
 		  	"y":{
-		  		"aggregate":"count",
+		  		"field":"nretweets", 
 		  		"type":"quantitative",
-		  		"title":"Number of Tweets",
+		  		"title":"Number of Retweets",
 		  	},
 		  	"tooltip" : 
 		  	[{
@@ -237,23 +297,32 @@
 		  		"timeUnit":"monthdayyear",
 		  		"title":"date"
 		  	},
-		  	{"field":"day", "type":"quantitative"},
-		  	{"field":"hour", "type":"quantitative"},
-		  	{"field":"tweet", "type":"nominal"},
-		  	{"field":"nlikes", "type":"quantitative"}
-		  	]
-		 //  	"color":{
-		 //  		"field":"nlikes",
-		 //  		"filter":"datum.nlikes > '100000'"
-			// },
-	}
-
+		  	{
+		  		"field":"tweet", 
+		  		"type":"nominal"
+		  	},
+		  	{
+		  		"field":"nlikes", 
+		  		"type":"quantitative", 
+		  		"title":"Likes"
+		  	},{
+		  		"field":"nretweets",
+		  		"type":"quantitative",
+		  		"title":"Retweets"
+		  	}
+		  	],
+		  	"color":{
+			  	"field":"date",
+			  	"timeUnit":"year",
+			  	"scale": {"range": ["purple", "#ff0000", "teal"]}
+		  }
+		  },
+		  
 		 
 		};
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis4", spec, opt);
 	</script>
-		
 		
 
 
