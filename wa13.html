@@ -30,11 +30,10 @@
 	<div class = "container">
 		<div class = "row">
 			<div class = "card">
-				<h4> Examining how Dogecoin price is influenced by Social Media </h4>
-			</div>
-		</div>
-	</div>
-	<div class = "container" id ="vis" style = "min-width:100px"></div>
+				<h4 style="padding-top:2%"> Examining how Dogecoin price is influenced by Social Media </h4>
+				<p> Dogecoin is a cryptocurrency that started in 2013 to generate internet humor about bitcoin. This joke turned into a powerful influence among investors and global companies. Most notably Elon Musk along with other trends and celebrities has influenced the volume of data that Dogecoin is getting. To understand how current trends and celebrities are affecting Dogecoins its important to look at the historical course of the stock. The chart of the left displays the volume of data from 2015. Most notably the chart doesn't show much activity until 2021 proving the volitity of this stock. More specifically on the left we can see how Dogecoin is being fluxtuated during 2021. Most interestingly, in the beginning of april the stock jumped to its highest volume of data.</p>
+		
+	<div class = "row" id ="vis" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -117,7 +116,10 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis", spec, opt);
 	</script>
-		<div class = "container" id ="mean" style = "min-width:100px"></div>
+
+	<p>Furthermore when looking specifically at Dogecoin price compared to the volume of data </p>
+
+		<div class = "row" id ="mean" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -135,13 +137,15 @@
 		  		"field": "Close",
 		  		"type": "quantitative",
 		  		"scale":{"type":"log"},
-		  		"axis":{"tickCount":5}
+		  		"axis":{"tickCount":5},
+		  		"title":"Closing Price"
 		  	},
 		  	"y":{
 		  		"field":"Volume", 
 		  		"type":"quantitative",
 		  		"scale":{"type":"log"},
-		  		"axis":{"tickCount":5}
+		  		"axis":{"tickCount":5},
+		  		"title":"Volume of Data"
 		  	},
 		  	"tooltip" : 
 		  	[{
@@ -163,7 +167,7 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#mean", spec, opt);
 	</script>
-	<div class = "container" id ="vis3" style = "min-width:100px"></div>
+	<div class = "row" id ="vis3" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -251,7 +255,7 @@
 			  	],
 			  	 "color":{
 				  	"field":"date",
-				  	"timeUnit":"year"
+				  	"timeUnit":"year",
 				  }
 			  }
 		  	}
@@ -265,7 +269,7 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis3", spec, opt);
 	</script>
-	<div class = "container" id ="vis4" style = "min-width:100px"></div>
+	<div class = "row" id ="vis4" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
 		  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -323,6 +327,10 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis4", spec, opt);
 	</script>
+		
+		</div>
+		</div>
+	</div>
 		
 
 
