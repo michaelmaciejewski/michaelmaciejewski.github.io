@@ -30,7 +30,7 @@
 	<div class = "container">
 		<div class = "row">
 			<div class = "card">
-				<h4 style="padding-top:2%"> Examining how Dogecoin price is influenced by Social Media </h4>
+				<h4 style="padding-top:2%"> Examining how Dogecoin price is influenced by Social Media, Tesla, and  </h4>
 				<p> Dogecoin is a cryptocurrency that started in 2013 to generate internet humor about bitcoin. This joke turned into a powerful influence among investors and global companies. Most notably Elon Musk along with other trends and celebrities has influenced the volume of data that Dogecoin is getting. To understand how current trends and celebrities are affecting Dogecoins its important to look at the historical course of the stock. The chart of the left displays the volume of data from 2015. Most notably the chart doesn't show much activity until 2021 proving the volitity of this stock. More specifically on the left we can see how Dogecoin is being fluxtuated during 2021. Most interestingly, in the beginning of april the stock jumped to its highest volume of data.</p>
 		
 	<div class = "row" id ="vis" style = "min-width:100px"></div>
@@ -117,7 +117,7 @@
 		vegaEmbed("#vis", spec, opt);
 	</script>
 
-	<p>Furthermore when looking specifically at Dogecoin price compared to the volume of data </p>
+	<p>Furthermore when looking specifically at Dogecoin price compared to the volume of data it is apparent that there are certain changes that occur in the duration of about eight years. The chart below shows how the price of Dogecoin rose significantly throughout time as the Volume of data increased. Therefore more people were buying into the stock as it was gaining popularity. The things affecting this stock price including multiple factors of social media influence, internet games, and funny memes. Most specifically I think it is important to note that apps like TikTok, Twitter, Instagram, Reddit, etc have increased in popularity over the last few years.</p>
 
 		<div class = "row" id ="mean" style = "min-width:100px"></div>
 		<script type="text/javascript">
@@ -167,6 +167,8 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#mean", spec, opt);
 	</script>
+
+	<p>Elon Musk, founder of Tesla, has become particuarly active on Twitter after basically becoming a national hero in technology. Therefore much of what Elon Musk says has the ability to create a volite market among stocks. The chart below shows how active Elon Musk has been on Twitter. </p>
 	<div class = "row" id ="vis3" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
@@ -202,6 +204,7 @@
 			  		"aggregate":"count", 
 			  		"type":"quantitative",
 			  		"title":"Number of Tweets",
+			  		"color":"tweet"
 			  	},
 			  	"tooltip" : 
 			  	[{
@@ -327,7 +330,212 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis4", spec, opt);
 	</script>
-		
+		<div class = "row" id ="vis6" style = "min-width:100px"></div>
+		<script type="text/javascript">
+		var spec = {
+		"hconcat":[
+			{
+			  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+			  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/TSLA.csv"},
+			  "mark":{
+			  	"type":"line",
+			  	"point":false
+			  	// "interpolate": "step-after"
+			  },
+			  "title":"Tesla Volume of date 2015–2021",
+			 "transform":[{
+			  	"filter":{
+			  		"field":"Date",
+			  		"timeUnit":"year",
+			  	    "range":[2015,2021]
+			  	}
+			  }],
+
+			  "height":300,
+			  "width":400,
+			  "encoding": {
+			  	"x":{
+			  		"field": "Date",
+			  		"timeUnit":"monthdayyear",
+			  		"title":"Date"
+			  	},
+			  	"y":{
+			  		"field":"Volume", 
+			  		"type":"quantitative",
+			  		"title":"Volume of Data",
+			  	},
+			  	"tooltip" : 
+			  	[{
+			  		"field":"Date",
+			  		"timeUnit":"year",
+			  		"title":"date"
+			  	},
+			  	{
+			  		"field":"High", 
+			  		"type":"quantitative"
+			  	},
+			  	{
+			  		"field":"Close", 
+			  		"type":"quantitative", 
+			  		"title":"Closing Price"
+			  	},{
+			  		"field":"Volume",
+			  		"type":"quantitative",
+			  		"title":"Volume of Data"
+			  	}
+			  	],
+			  	"color":{
+				  	"field":"Date",
+				  	"timeUnit":"year",
+				  	"scale": {"range": ["purple", "#ff0000", "teal"]}
+			  }
+			  }
+			},{
+				 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+		  		"data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
+				"mark":{
+			  	"type":"line",
+			  	"point":"true"
+			  	// "interpolate": "step-after"
+			  },
+			  "title":"Dogecoin volume of Data 2015-2021",
+			  "transform":[{
+			  	"filter":{
+			  		"field":"Date",
+			  		"timeUnit":"year",
+			  	    "range":[2015,2021]
+			  	}
+			  }],
+			  "height":300,
+			  "width":400,
+			  "encoding": {
+			  	"x":{
+			  		"field": "Date",
+			  		"timeUnit": "monthyear"
+			  	},
+			  	"y":{
+			  		"field":"Volume", 
+			  		"type":"quantitative"
+			  	},
+			  	"tooltip" : 
+			  	[{
+			  		"field":"Volume",
+			  		"type":"quantitative"
+			  	},
+			  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+			  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+			  	]
+			  }
+			}
+		  
+		 ]
+		};
+		var opt = {"renderer": "canvas", "actions": false};
+		vegaEmbed("#vis6", spec, opt);
+	</script>
+			<div class = "row" id ="vis7" style = "min-width:100px"></div>
+		<script type="text/javascript">
+		var spec = {
+		"hconcat":[
+			{
+			  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+			  "data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/TSLA.csv"},
+			  "mark":{
+			  	"type":"line",
+			  	"point":false
+			  	// "interpolate": "step-after"
+			  },
+			  "title":"Tesla Stock Price 2018–2021",
+			 "transform":[{
+			  	"filter":{
+			  		"field":"Date",
+			  		"timeUnit":"year",
+			  	    "range":[2018,2021]
+			  	}
+			  }],
+
+			  "height":300,
+			  "width":400,
+			  "encoding": {
+			  	"x":{
+			  		"field": "Date",
+			  		"timeUnit":"monthdayyear",
+			  		"title":"Date"
+			  	},
+			  	"y":{
+			  		"field":"Close", 
+			  		"type":"quantitative",
+			  		"title":"Closing Price",
+			  	},
+			  	"tooltip" : 
+			  	[{
+			  		"field":"Date",
+			  		"timeUnit":"year",
+			  		"title":"date"
+			  	},
+			  	{
+			  		"field":"High", 
+			  		"type":"quantitative"
+			  	},
+			  	{
+			  		"field":"Close", 
+			  		"type":"quantitative", 
+			  		"title":"Closing Price"
+			  	},{
+			  		"field":"Volume",
+			  		"type":"quantitative",
+			  		"title":"Volume of Data"
+			  	}
+			  	],
+			  	"color":{
+				  	"field":"Date",
+				  	"timeUnit":"year",
+				  	"scale": {"range": ["purple", "#ff0000", "teal"]}
+			  }
+			  }
+			},{
+				 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+		  		"data": {"url": "https://raw.githubusercontent.com/michaelmaciejewski/michaelmaciejewski.github.io/master/DOGE-USD.csv"},
+				"mark":{
+			  	"type":"line",
+			  	"point":true
+			  	// "interpolate": "step-after"
+			  },
+			  "title":"Dogecoin Stock Price 2018-2021",
+			  "transform":[{
+			  	"filter":{
+			  		"field":"Date",
+			  		"timeUnit":"year",
+			  	    "range":[2018,2021]
+			  	}
+			  }],
+			  "height":300,
+			  "width":400,
+			  "encoding": {
+			  	"x":{
+			  		"field": "Date",
+			  		"timeUnit": "monthyear"
+			  	},
+			  	"y":{
+			  		"field":"Close", 
+			  		"type":"quantitative"
+			  	},
+			  	"tooltip" : 
+			  	[{
+			  		"field":"Volume",
+			  		"type":"quantitative"
+			  	},
+			  	{"field":"Date", "timeUnit":"monthdayyear","title":"Date"},
+			  	{"field":"Close", "type":"quantitative", "title":"Closing Price"}
+			  	]
+			  }
+			}
+		  
+		 ]
+		};
+		var opt = {"renderer": "canvas", "actions": false};
+		vegaEmbed("#vis7", spec, opt);
+	</script>
 		</div>
 		</div>
 	</div>
