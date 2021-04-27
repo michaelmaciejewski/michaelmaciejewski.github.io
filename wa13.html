@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title>
-			Michael Maciejewski
+			WA#13
 	</title>
 
 	<meta charset = "utf-8">
@@ -26,12 +26,13 @@
 		<h2> INFO 3402</h2>
 		<h3> Michael Maciejewski </h3>
 	</div>
+	
 	<br>
 	<div class = "container">
 		<div class = "row">
 			<div class = "card">
-				<h4 style="padding-top:2%"> Examining how Dogecoin price is influenced by Social Media, Tesla, and  </h4>
-				<p> Dogecoin is a cryptocurrency that started in 2013 to generate internet humor about bitcoin. This joke turned into a powerful influence among investors and global companies. Most notably Elon Musk along with other trends and celebrities has influenced the volume of data that Dogecoin is getting. To understand how current trends and celebrities are affecting Dogecoins its important to look at the historical course of the stock. The chart of the left displays the volume of data from 2015. Most notably the chart doesn't show much activity until 2021 proving the volitity of this stock. More specifically on the left we can see how Dogecoin is being fluxtuated during 2021. Most interestingly, in the beginning of april the stock jumped to its highest volume of data.</p>
+				<h4 style="padding-top:2%"> Examining how Dogecoin price is influenced by Social Media, Tesla, and Elon Musk </h4>
+				<p> Dogecoin is a cryptocurrency that started in 2013 to generate internet humor about bitcoin. This joke turned into a powerful influence among investors and global companies. Most notably Elon Musk along with other trends and celebrities have influenced the volume of data that Dogecoin is recieving. To understand how current trends and celebrities are affecting Dogecoins its important to look at the historical course of the stock. The chart of the left displays the volume of data from 2015. Most notably the chart doesn't show much activity until 2021 proving the volitity of this stock. More specifically on the right we can see how Dogecoin is being fluxtuated during 2021. Most interestingly, in the beginning of april the stock jumped to its highest volume of data.</p>
 		
 	<div class = "row" id ="vis" style = "min-width:100px"></div>
 		<script type="text/javascript">
@@ -117,7 +118,7 @@
 		vegaEmbed("#vis", spec, opt);
 	</script>
 
-	<p>Furthermore when looking specifically at Dogecoin price compared to the volume of data it is apparent that there are certain changes that occur in the duration of about eight years. The chart below shows how the price of Dogecoin rose significantly throughout time as the Volume of data increased. Therefore more people were buying into the stock as it was gaining popularity. The things affecting this stock price including multiple factors of social media influence, internet games, and funny memes. Most specifically I think it is important to note that apps like TikTok, Twitter, Instagram, Reddit, etc have increased in popularity over the last few years.</p>
+		<p>Furthermore when looking specifically at Dogecoin price compared to the volume of data it is apparent that there are certain changes that occur in the duration of about eight years. The chart below shows how the price of Dogecoin rose significantly throughout time as the Volume of data increased. Therefore more people were buying into the stock as it was gaining popularity. The things affecting this stock price including multiple factors of social media influence, internet games, and funny memes. Most specifically I think it is important to note that apps like TikTok, Twitter, Instagram, Reddit, etc have increased in popularity over the last few years. The separation of color between the red and teal display how the stock jumped in price and volume in 2020.</p>
 
 		<div class = "row" id ="mean" style = "min-width:100px"></div>
 		<script type="text/javascript">
@@ -168,7 +169,12 @@
 		vegaEmbed("#mean", spec, opt);
 	</script>
 
-	<p>Elon Musk, founder of Tesla, has become particuarly active on Twitter after basically becoming a national hero in technology. Therefore much of what Elon Musk says has the ability to create a volite market among stocks. The chart below shows how active Elon Musk has been on Twitter. </p>
+		<p>Elon Musk, founder of Tesla, has become particuarly active on Twitter after basically becoming a national hero in technology. Therefore much of what Elon Musk says has the ability to create a volite market among stocks. The chart below shows how active Elon Musk has been on Twitter. Elon Musk continually make tweets in positive remarks of Dogecoin correlating to why the volume of data might increase so much in 2021. On February 04, 2020, we can most notably see Elon Musk's impact to the Dogecoin after he posted a series of tweets. Most specifically he posted a photo featuring himself and dogecoin in the The Lion King. After this the stock value rose over 50%. Being the richest person on earth, Elon Musk definelty made use of the lockdown by challenging the idea of cryptocurrency.</p>
+	<div class = "container">
+		<div class = "text-center">
+			<img class = "dogemusk" src="doge.png">
+		<div>
+	</div>
 	<div class = "row" id ="vis3" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
@@ -204,7 +210,7 @@
 			  		"aggregate":"count", 
 			  		"type":"quantitative",
 			  		"title":"Number of Tweets",
-			  		"color":"tweet"
+
 			  	},
 			  	"tooltip" : 
 			  	[{
@@ -272,6 +278,7 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis3", spec, opt);
 	</script>
+		<p>We can begin to visualize the impact of Elon Musk tweets by seeing his influence over the time that he has been active on Twitter. While it seems that most of his tweets are confined to an ecosystem there are particular tweets that obviously reach a viral audience. The tweet on Feb 04, 2021 that says "ur welcome" with a doge meme hit about a million likes and around 160k retweets. Overall, Elon Musk's influence on Twitter with random/funny comments and memes gain the most popularity.</p>
 	<div class = "row" id ="vis4" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
@@ -320,7 +327,7 @@
 		  	],
 		  	"color":{
 			  	"field":"date",
-			  	"timeUnit":"year",
+			  	"timeUnit":"monthyear",
 			  	"scale": {"range": ["purple", "#ff0000", "teal"]}
 		  }
 		  },
@@ -330,6 +337,7 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis4", spec, opt);
 	</script>
+	<p class ="container">Lasty, being that Elon Musk is the owner of Tesla, its important to compare the Tesla Stock to the Dogecoin stock to see how they might have impacted each other. Being the Dogecoin is relatively new compared to other popular stocks, Tesla obviously has more activity between 2015 and 2020 however the most interesting thing that these charts reveal is the volume of data that occured in 2020. Both stock gain a rare increase in volume during these times proving that people who also invested in Dogecoin support Tesla. However, another important observation is that the volume of data the Dogecoin recieved was much higher that what Tesla recieved. Dogecoin rose almost 20 million above tesla's highest volume. Furthermore, looking at the closing price chart comparison its apparent that Tesla's stock became very popular before Dogecoin became very volitle</p>
 		<div class = "row" id ="vis6" style = "min-width:100px"></div>
 		<script type="text/javascript">
 		var spec = {
@@ -536,6 +544,7 @@
 		var opt = {"renderer": "canvas", "actions": false};
 		vegaEmbed("#vis7", spec, opt);
 	</script>
+	<p>Overall, the price and volume of Dogecoin was influence by Elon Musk's activity on Twitter. While this is not the only factor, this proves that social media has the ability to influence the market. From 2015-2021 it is apparent that Elon Musk's increased activity on Twitter has lead to the significant changes in stock prices (TSLA & DOGE). What was once a joke is now one of the most notable stocks in finance history, all because of a tweet. </p>
 		</div>
 		</div>
 	</div>
