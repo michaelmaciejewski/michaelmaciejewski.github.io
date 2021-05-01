@@ -1,0 +1,22 @@
+.header{
+	text-align: center;
+	background-color: rgba(2, 82, 232, 0.74);
+	padding: 2px;
+}
+body{
+	font-family:"Times New Roman";
+}
+.pad{
+	padding: 2px;
+}
+.dogemusk{
+	width:400px;
+	height:300px;
+	align-items: center;
+}
+h4{
+	text-align: center;
+}
+p{
+	text-indent: 30px;
+}
